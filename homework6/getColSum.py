@@ -21,7 +21,4 @@ def get_column_sum(mat,index):
             
 print(generate_matrix(rows,cols))
 print("Sum: ",get_column_sum(mat,index))
-
-
-
-print(get_column_sum(mat,index))   
+  
