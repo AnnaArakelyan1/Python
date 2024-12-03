@@ -14,9 +14,13 @@ def measure_time(func):
 @measure_time
 def create_file_with_random_numbers(file_name="random_numbers.txt"):
     with open(file_name, "w") as f:
-        for _ in range(100):
-            line = " ".join(str(random.randint(1, 100)) for _ in range(20))
-            f.write(line + "\n")
+       for _ in range(100):
+         numbers = []
+         for _ in range(20):
+          numbers.append(str(random.randint(1, 100))) 
+         line = " ".join(numbers)  
+         f.write(line + "\n")
+
     print(f"File '{file_name}' created successfully.")
 
 
@@ -24,7 +28,11 @@ def create_file_with_random_numbers(file_name="random_numbers.txt"):
 def process_and_write_back(file_name="random_numbers.txt"):
     with open(file_name, "r") as f:
         lines = f.readlines()
-        integer_arrays = list(map(lambda line: list(map(int, line.split())), lines))
+        integer_arrays=[]
+        for line in lines:
+            string_array=line.split()
+            integer_array = list(map(int, string_array)) 
+            integer_arrays.append(integer_array)
     
     filtered_lines = [
         " ".join(map(str, filter(lambda x: x > 40, array)))
@@ -46,10 +54,10 @@ def read_file_generator(file_name="random_numbers.txt"):
 def process_with_generator(file_name="random_numbers.txt"):
     generator = read_file_generator(file_name)
     for line in generator:
-        print(f"Processed Line: {line}") 
+        print(f"{line}") 
 
 
 
 create_file_with_random_numbers()  
 process_and_write_back()            
-process_with_generator()          
+process_with_generator()  
